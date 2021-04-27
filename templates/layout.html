@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image-xicon" href="../static/img/martini-18-486106.png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Drink Team Club{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div id="website-area">
+        <header class="menu-fixed">
+        <nav id="nav">
+            
+        </nav>
+    </header>
+            
+    <div class="body">
+        {% block body %}
+        {% endblock %}
+     </div>
+    </div>
+    
+
+</body>
+</html>
