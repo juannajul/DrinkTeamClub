@@ -126,7 +126,7 @@
 
 }
 
-/* Register page styles*/
+/* Register and login page styles*/
 #container-form{
     width: 70%;
     height: 80vh;
@@ -134,7 +134,8 @@
     margin-top: 50px;
 }
 
-#container-register-form{
+#container-register-form,
+#container-login-form{
     width: 400px;
     height: 500px;
     margin: 0 auto;
@@ -144,7 +145,13 @@
     box-shadow: -3px 0px 3px #ccc, 1px 0px 2px #ccc;
 }
 
-.coctail-container-register-logo{
+#container-login-form{
+    height: 330px;
+    margin-top: 80px;
+}
+
+.coctail-container-register-logo,
+.coctail-container-login-logo{
     display: flex;
     align-items: center;
     margin: 10px;
@@ -155,18 +162,21 @@
     height: 50px;
 }
 
-#register-container{
+#register-container,
+#login-container{
     width: 80%;
     margin: 0 auto;
 }
 
-#register-title{
+#register-title,
+#login-title{
     text-align: center;
     color: #bfd200;
     margin-bottom: 10px;
 }
 
-#register-container input{
+#register-container input,
+#login-container input{
     width: 80%;
     height: 30px;
     margin: 0 auto;
@@ -179,11 +189,14 @@
 }
 
 #register-container input:focus, 
-#register-container button:focus{
+#register-container button:focus,
+#login-container input:focus,
+#login-container button:focus{
     outline: none;
 }
 
-#register-container button{
+#register-container button,
+#login-container button{
     width: 80%;
     height: 30px;
     margin: 0 auto;
@@ -196,7 +209,50 @@
     transition: all 400ms;
 }
 
-#register-container button:hover{
+#register-container button:hover,
+#login-container button:hover{
     background: #a2b105;
     cursor: pointer;
+}
+
+#login-message,
+#register-message{
+    margin: 10px;
+    text-align: center;
+    background: #fdd;
+    padding: 7px;
+    border: 0.1px solid red;
+    border-radius: 2px;
+    font-size: 15px;
+    color: rgb(228, 10, 10);
+}
+
+.get-account,
+.get-login{
+    text-align: center;
+    margin: 5%;
+    font-size: 14px;
+}
+
+@media (max-width: 550px){
+    #container-register-form,
+    #container-login-form{
+        margin: 0 auto;
+        width: 350px;
+    }
+}
+
+@media (max-width: 480px){
+    #container-register-form,
+    #container-login-form{
+        width: 100%;
+    }
+    #register-container,
+    #login-container{
+        margin-left: 5%;
+    }
+    #register-title,
+    #login-title{
+        margin-left: 12%;
+    }
 }

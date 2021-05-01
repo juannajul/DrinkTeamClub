@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %} | Sign Up{% endblock %}
+
+{% block body %}
+
+<section id="container-form">
+    <div id="container-register-form">
+        <div class="coctail-container-register-logo">
+            <img class="coctail-logo-img" src="/static/img/martini-18-486106.png" alt="">
+        </div>
+        <div id="register-container">
+            
+            <h2 id="register-title">Register</h2>
+
+            {% if message %}
+                <div id="register-message">{{ message }}</div>
+            {% endif %}
+
+            <form action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                
+                <input class="" autofocus autocomplete="off" required=true type="text" name="username" placeholder="Username">
+                
+                <input class="" autocomplete="off" type="email" name="email" placeholder="Email Address">
+                
+                <input class="" type="password" name="password" placeholder="Password">
+                
+                <input class="" type="password" name="confirmation" placeholder="Confirm Password">
+                
+                <button type="submit">Register</button>
+                
+
+            </form>
+
+            <div class="get-login">
+                Already have an account? <a href="">Log In here.</a>
+            </div>
+            
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %} | Log In{% endblock %}
+
+{% block body %}
+
+<section id="container-form">
+    <div id="container-login-form">
+        <div class="coctail-container-login-logo">
+            <img class="coctail-logo-img" src="/static/img/martini-18-486106.png" alt="">
+        </div>
+        <div id="login-container">
+            
+            <h2 id="login-title">Login</h2>
+
+            {% if message %}
+                <div id="login-message">{{ message }}</div>
+            {% endif %}
+
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                
+                <input class="" autofocus autocomplete="off" type="text" name="username" placeholder="Username">
+                
+                <input class="" type="password" name="password" placeholder="Password">
+                
+                <button type="submit">Log in</button>
+                
+
+            </form>
+
+            <div class="get-account">
+                Don't have an account? <a href="{% url 'signup' %}">Register here.</a>
+            </div>
+            
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

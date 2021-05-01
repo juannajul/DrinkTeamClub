@@ -13,20 +13,20 @@
     <div id="website-area">
         <header id="header" class="menu-fixed">
             <div id="logo">
-                <a href="">
+                <a href="{% url 'index' %}">
                     <h2>DrinkTeamClub</h2>
                 </a>
             </div>
             <nav id="nav">
                 <ul>
                     <li>
-                        <a href="">Home</a>
+                        <a href="{% url 'index' %}">Home</a>
                     </li>
                     <li>
-                        <a href="">Log In</a>
+                        <a href="{% url 'login' %}">Log In</a>
                     </li>
                     <li>
-                        <a href="{% url 'users:signup' %}">Register</a>
+                        <a href="{% url 'signup' %}">Register</a>
                     </li>
                     <li>
                         <a href="">Contactos</a>
