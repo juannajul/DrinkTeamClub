@@ -29,7 +29,7 @@
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    box-shadow: -3px 3px 7px grey;
+    box-shadow: -3px 1px 7px rgb(82, 81, 81);
 }
 
 .menu-fixed{
@@ -256,3 +256,47 @@
         margin-left: 12%;
     }
 }
+
+/* index css styles */
+
+#index-content{
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 200vh;
+    border: 1px solid black;
+}
+
+#index-banner-container{
+    width: 100%;
+    height: 105vh;
+    background-image:linear-gradient(to top, rgba(0, 0, 0, 0.603) 0%,rgba(0, 0, 0, 0.747) 100%),url("../img/tragos2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 780px;
+    background-attachment: fixed;
+}
+
+.banner-content{
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    border: 1px solid green;
+}
+
+.banner-content .banner-title-content{
+    border: 1px solid red;
+    margin: 2px;
+}
+
+.banner-content .banner-title-content #banner-title{
+    color: white;
+    border: 1px solid blue;
+    margin:2px;
+}
+
+
+#otro{
+    height: 30vh;
+    background: red;
+}
+
