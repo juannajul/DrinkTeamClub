@@ -9,7 +9,6 @@
 
 #website-area{
     width: 100%;
-    height: 1000px;
 }
 
 @font-face{
@@ -257,19 +256,20 @@
     }
 }
 
-/* index css styles */
+/* index banner css styles */
 
 #index-content{
     width: 100%;
     margin: 0 auto;
     display: block;
-    height: 200vh;
-    border: 1px solid black;
+    height: 2000px;
+    border: 0px solid black;
+    overflow: hidden;
 }
 
 #index-banner-container{
     width: 100%;
-    height: 100vh;
+    height: 900px;
     background-image:linear-gradient(to top, rgba(0, 0, 0, 0.603) 0%,rgba(0, 0, 0, 0.747) 100%),url("../img/tragos2.jpg");
     background-repeat: no-repeat;
     background-size: 100% 780px;
@@ -332,15 +332,111 @@
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    transition: all 300ms;
+    transition: all 500ms;
 }
 
 #random-button:hover{
     background: #758002;
 }
 
-#otro{
+#random-content{
+    display: none;
     height: 30vh;
     background: red;
 }
 
+#search-cocktail-content{
+    width: 100%;
+    height: auto;
+    border: 0px solid red;
+}
+
+#search-cocktail-container{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    border: 0px solid green;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-cocktail-form{
+    margin-top: 20px;
+    width: 300px;
+    height: 220px;
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    box-shadow: -3px 0px 3px #ccc, 1px 0px 2px #ccc;
+}
+
+#search-cocktail-name,
+#search-cocktail-category,
+#search-cocktail-ingredient{
+    margin: 10px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 15px;
+    color: #a2b105;
+}
+
+.search-cocktail-form input,
+.search-cocktail-form button{
+    width: 80%;
+    height: 30px;
+    margin: 30px 20px 0 20px;
+    font-size: 15px;
+}
+
+.search-cocktail-form input:focus,
+.search-cocktail-form button:focus{
+    outline: none;
+}
+
+.search-cocktail-form input{
+    border: 0px;
+    padding-left: 5px;
+    border-bottom: 2px solid #a2b105;
+}
+
+@media (max-width: 1050px){
+    #index-banner-container {
+        height: 720px;
+    }
+
+    #search-cocktail-container{
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 550px){
+
+    #index-banner-container {
+        height: 260px;
+        background-size: 100% 349px;
+        object-fit: cover;
+    }
+
+    .banner-title:first-child {
+        margin-top: 30px;
+    }
+
+    .banner-container-content h2 {
+        margin-top: 35px;
+    }
+
+    .banner-random-button {
+        width: 180px;
+        margin-top: 35px;
+    }
+
+    #random-button {
+        height: 35px;
+    }
+
+}

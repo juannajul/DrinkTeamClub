@@ -15,10 +15,11 @@
                     <h2 class="banner-title">
                         Here you can <em>search</em> your favorites <em>cocktails</em> 
                     </h2>
-
-                    <div class="banner-random-button">
-                        <button id="random-button">Random Cocktail</button>
-                    </div>
+                    <form action="{% url 'random' %}" method="get">
+                        <div class="banner-random-button">
+                            <button  id="random-button">Random Cocktail</button>
+                        </div>
+                    </form>
 
                 </div>
                 
@@ -26,9 +27,49 @@
             
         </div>
 
-        <div id="otro">
+        <div id="random-content">
 
         </div>
+
+        <section id="search-cocktail-content">
+
+            <div id="search-cocktail-container">
+
+                <div class="search-cocktail-form">
+                    <div id="search-cocktail-name">
+                        <h2>Search by name</h2>
+                        <form action="">
+                            <input type="text" placeholder="Cocktail name">
+                            <button>Drink</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="search-cocktail-form">
+                    <div id="search-cocktail-category">
+                        <h2>Search by category</h2>
+                        <form action="">
+                            <input type="text" placeholder="Cocktail category">
+                            <button>Drink</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="search-cocktail-form">
+                    <div id="search-cocktail-ingredient">
+                        <h2>Search ingredient</h2>
+                        <form action="">
+                            <input type="text" placeholder="Ingredient">
+                            <button>Drink</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
     </section>
     
 
