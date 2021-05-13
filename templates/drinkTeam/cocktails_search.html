@@ -21,7 +21,7 @@
 
                         <div class="your-drink-button-container">
                             {% if request.user.is_authenticated %}
-                            <a id="watchlist-link" class="{% if request.user in drink.favorites.all %}your-drink-button-in-list{% else %}your-drink-button{% endif %}" 
+                            <a id="watchlist-link" class="{% if request.user in drink.favorites.all %}your-drink-button-in-list{% else %}your-drink-button{% endif %} watchlist-link{{drink.id}}" 
                             data-postid="{{ drink.id }}">+</a>
                             {% endif %}
                         </div>

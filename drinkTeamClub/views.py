@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
@@ -195,10 +196,27 @@ def drink_watchlist(request, drink_id):
     if request.method == "PUT":
         data_drink = json.loads(request.body)
         if data_drink.get("favorites") is not None:
-            if data_drink.get("likes"):
-                if request.user in post.likes.all():
+            print(data_drink.get("favorites"))
+            if data_drink.get("favorites"):
+                print("entro 0")
+                if request.user in drink.favorites.all():
+                    print("entro1")
                     drink.favorites.remove(request.user)
                 else:
                     drink.favorites.add(request.user)
-                drink.save()
-                return HttpResponse(status=204)
+                    print("entro2")
+        drink.save()
+        return HttpResponse(status=204)
+    elif request.method == "GET":
+        return JsonResponse(drink.serialize())
+    else:
+        return JsonResponse({
+            "error": "PUT request required"
+        }, status=404)
+
+@login_required(login_url='login')
+def show_user_watchlist(request, username):
+    drinks = Drink.objects.filter(favorites=request.user.id)
+    return render(request, "../templates/drinkTeam/cocktails_search.html",{
+                    "drinks": drinks,
+                })

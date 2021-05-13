@@ -36,19 +36,3 @@ class Drink(models.Model):
             "favorites": [user.username for user in self.favorites.all()],
             "ingredients": [ingredient.ingredient_name for ingredient in self.ingredients.all()]
         }
-
-
-
-"""
- def serialize(self):
-        return {
-            "id": self.id,
-            "sender": self.sender.email,
-            "recipients": [user.email for user in self.recipients.all()],
-            "subject": self.subject,
-            "body": self.body,
-            "timestamp": self.timestamp.strftime("%b %d %Y, %I:%M %p"),
-            "read": self.read,
-            "archived": self.archived
-        }
-"""

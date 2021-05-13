@@ -26,7 +26,7 @@
                     </li>
                     {% if user.is_authenticated %}
                         <li>
-                            <a href="{% url 'login' %}">Your Drinks</a>
+                            <a href="{% url 'your_drinks' username=request.user.username %}">Your Drinks</a>
                         </li>
                     {% else %}
                         <li>
