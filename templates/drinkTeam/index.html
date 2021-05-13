@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
-{% block title %} | Inicio{% endblock %}
+{% load static %}
+
+{% block title %} | Home{% endblock %}
 
 {% block body %}
     <section id="index-content">
@@ -15,11 +17,11 @@
                     <h2 class="banner-title">
                         Here you can <em>search</em> your favorites <em>cocktails</em> 
                     </h2>
-                    <form action="{% url 'random' %}" method="get">
+                    <!--<form action="" method="">-->
                         <div class="banner-random-button">
                             <button  id="random-button">Random Cocktail</button>
                         </div>
-                    </form>
+                    <!--</form>-->
 
                 </div>
                 
@@ -27,8 +29,32 @@
             
         </div>
 
-        <div id="random-content">
+        <div id="random-modal-content">
 
+            <div id="random-modal-container">
+                
+                <div class="drink-content">
+                    <div class="drink-img-random-container">
+                        
+                    </div>
+                    <div class="drink-name-title">
+                            
+                    </div>
+                    <div class="drink-ingredients">
+                        
+                    </div>
+                    <div class="drink-category">
+                        
+                    </div>
+                    <div class="drink-instructions">
+                        
+                    </div>
+                    <div class="close-random-drink">
+                        
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
         <section id="search-cocktail-content">
@@ -38,8 +64,9 @@
                 <div class="search-cocktail-form">
                     <div id="search-cocktail-name">
                         <h2>Search by name</h2>
-                        <form action="">
-                            <input type="text" placeholder="Cocktail name">
+                        <form action="{% url 'search_by_name' %}" method="POST">
+                            {% csrf_token %}
+                            {{drinkForm}}
                             <button>Drink</button>
                         </form>
                     </div>
@@ -48,8 +75,9 @@
                 <div class="search-cocktail-form">
                     <div id="search-cocktail-category">
                         <h2>Search by category</h2>
-                        <form action="">
-                            <input type="text" placeholder="Cocktail category">
+                        <form action="{% url 'search_by_category' %}" method="POST">
+                            {% csrf_token %}
+                            {{categoryForm}}
                             <button>Drink</button>
                         </form>
                     </div>
@@ -57,9 +85,10 @@
 
                 <div class="search-cocktail-form">
                     <div id="search-cocktail-ingredient">
-                        <h2>Search ingredient</h2>
-                        <form action="">
-                            <input type="text" placeholder="Ingredient">
+                        <h2>Search by ingredient</h2>
+                        <form action="{% url 'search_by_ingredient' %}" method="POST">
+                            {% csrf_token %}
+                            {{ingredientForm}}
                             <button>Drink</button>
                         </form>
                     </div>
@@ -69,10 +98,10 @@
 
         </section>
 
-
     </section>
     
+{% endblock %}
 
-
-    
+{% block script %}
+    <script src="{% static '/random_drink.js' %}"></script>
 {% endblock %}

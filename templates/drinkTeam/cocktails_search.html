@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %} | Drinks{% endblock %}
+
+{% block body %}
+
+    <section id="drinks-page-content">
+        {% if request.user.is_authenticated %}
+        <div id="user-container">
+            <h3>Time to drink <span id="username-title">{{request.user.username}}</span>!</h3>
+        </div>
+        
+        {% endif %}
+        <div id="drinks-container">
+            {% for drink in drinks %}
+
+                <div id="drink-container">
+                    <div class="drink-content">
+
+                        <div class="your-drink-button-container">
+                            {% if request.user.is_authenticated %}
+                            <a id="watchlist-link" class="{% if request.user in drink.favorites.all %}your-drink-button-in-list{% else %}your-drink-button{% endif %}" 
+                            data-postid="{{ drink.id }}">+</a>
+                            {% endif %}
+                        </div>
+                        <div class="drink-img-container">
+                            <img src="{{drink.drink_image}}" alt="cocktail">
+                        </div>
+                        <div class="drink-name-title">
+                            <h3>{{drink.drink_name}}</h3>
+                        </div>
+                        <div class="drink-ingredients">
+                            <p><em>Ingredients:</em>
+                                    {% for ingredient in drink.ingredients.all.values %}
+                                        {{ingredient.ingredient_name}}.
+                                    {% endfor %}
+                            </p>
+                        </div>
+                        <div class="drink-category">
+                            <p><em>Category:</em> {{drink.category.category_name}}</p>
+                        </div>
+                        <div class="drink-instructions">
+                            <p><em>Instructions: </em>
+                            {{drink.drink_instructions}}</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </section>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/watchlist_drinks.js' %}"></script>
+{% endblock %}
