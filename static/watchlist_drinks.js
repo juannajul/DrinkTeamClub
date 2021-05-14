@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function watchlist_drink(drink_id){
     // Put drink in user watchlist or not
     const current_user = document.querySelector('#username-title').innerHTML;
+    console.log(current_user)
     var is_linking_by_user = false;
     fetch(`/drink_watchlist/${drink_id}`)
         .then(response => response.json())

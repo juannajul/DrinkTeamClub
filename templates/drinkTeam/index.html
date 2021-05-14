@@ -67,7 +67,7 @@
                         <form action="{% url 'search_by_name' %}" method="POST">
                             {% csrf_token %}
                             {{drinkForm}}
-                            <button>Drink</button>
+                            <button class="search-cocktail-buttons">Drink</button>
                         </form>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                         <form action="{% url 'search_by_category' %}" method="POST">
                             {% csrf_token %}
                             {{categoryForm}}
-                            <button>Drink</button>
+                            <button class="search-cocktail-buttons">Drink</button>
                         </form>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         <form action="{% url 'search_by_ingredient' %}" method="POST">
                             {% csrf_token %}
                             {{ingredientForm}}
-                            <button>Drink</button>
+                            <button class="search-cocktail-buttons">Drink</button>
                         </form>
                     </div>
                 </div>

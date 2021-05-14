@@ -26,7 +26,9 @@
                     </li>
                     {% if user.is_authenticated %}
                         <li>
-                            <a href="{% url 'your_drinks' username=request.user.username %}">Your Drinks</a>
+                            <a href="{% url 'your_drinks' username=request.user.username %}">
+                                <span id="username-title">{{request.user.username}}</span>'s Drinks
+                            </a>
                         </li>
                     {% else %}
                         <li>
@@ -34,9 +36,7 @@
                         </li>
                     {% endif %}
                     {% if user.is_authenticated %}
-                    <li>
-                        <a href="">{{user.username}}</a>
-                    </li>
+                    
                     {% else %}
                     <li>
                         <a href="{% url 'signup' %}">Register</a>
@@ -55,6 +55,17 @@
             {% block body %}
             {% endblock %}
         </div>
+
+        <footer>
+            <div id="footer-container">
+                <div id="footer-content">
+                    <h3>Juan Najul Web</h3>
+                    <p>juannajulvillegas@gmail.com</p>
+                    <p>&copy; Copyright. All rights reserved</p>
+                </div>
+            </div>
+        </footer>
+
     </div>
 </body>
 </html>

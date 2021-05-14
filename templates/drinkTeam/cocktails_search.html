@@ -7,12 +7,7 @@
 {% block body %}
 
     <section id="drinks-page-content">
-        {% if request.user.is_authenticated %}
-        <div id="user-container">
-            <h3>Time to drink <span id="username-title">{{request.user.username}}</span>!</h3>
-        </div>
         
-        {% endif %}
         <div id="drinks-container">
             {% for drink in drinks %}
 
@@ -47,12 +42,25 @@
                         </div>
                         
                     </div>
-                    
-                </div>
 
+                </div>
             {% endfor %}
         </div>
-
+        <div class="pagination">
+            <div id="pagination-content">
+                <span class="step-links">
+                    {% if drinks.has_previous %}
+                        <a id="paginator-previous-link" href="?page={{ drinks.previous_page_number }}">{{drinks.previous_page_number}}</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ drinks.number }}
+                    </span>
+                    {% if drinks.has_next %}
+                        <a id="paginator-next-link" href="?page={{ drinks.next_page_number }}">{{drinks.next_page_number}}</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
     </section>
 
 {% endblock %}

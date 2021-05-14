@@ -125,6 +125,37 @@
 
 }
 
+/* Footer styles */
+#footer-container{
+    width: 100%;
+    height: 155WSpx;
+    margin-top: 45px;
+    background: black;
+
+}
+
+#footer-content{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+    color: whitesmoke;
+}
+
+#footer-content h3,
+#footer-content p{
+    margin-bottom: 5px;
+}
+
+#footer-content h3{
+    color: #a2b105;
+}
+
+#footer-content p{
+    font-size: 15px;
+    color: rgb(216, 211, 211);
+}
+
 /* Register and login page styles*/
 #container-form{
     width: 70%;
@@ -132,6 +163,8 @@
     margin: 0 auto;
     margin-top: 50px;
 }
+
+
 
 #container-register-form,
 #container-login-form{
@@ -262,7 +295,7 @@
     width: 100%;
     margin: 0 auto;
     display: block;
-    height: 2000px;
+    height: auto;
     border: 0px solid black;
     overflow: hidden;
 }
@@ -430,8 +463,8 @@
     width: 80%;
     height: auto;
     margin: 0 auto;
-    margin-top: 200px;
-    margin-bottom: 200px;
+    margin-top: 250px;
+    margin-bottom: 210px;
     border: 0px solid green;
     display: flex;
     flex-direction: row;
@@ -473,6 +506,22 @@
 .search-cocktail-form button:focus,
 .search-cocktail-form select:focus{
     outline: none;
+}
+
+#search-cocktail-name .search-cocktail-buttons,
+#search-cocktail-category .search-cocktail-buttons,
+#search-cocktail-ingredient .search-cocktail-buttons{
+    background: #a3b10573;
+    border: .5px solid #a2b105;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+#search-cocktail-name .search-cocktail-buttons:hover,
+#search-cocktail-category .search-cocktail-buttons:hover,
+#search-cocktail-ingredient .search-cocktail-buttons:hover{
+    background: #a0ac24e1;
 }
 
 .search-cocktail-form input{
@@ -543,7 +592,7 @@
 #drink-container{
     width: 310px;
     min-height: 390px;
-    margin: 10px 30px 20px 30px;
+    margin: 40px 30px 20px 30px;
     border: 1px solid rgba(0, 0, 0, 0.219);
     border-radius: 5px;
     box-shadow: -1px 2px 2px #ccc, 1px 0px 2px #ccc;
@@ -552,18 +601,6 @@
 
 #drink-container:hover{
     transform: scale(1.05, 1.05);
-}
-
-#user-contaner{
-    width: 100%;
-    margin: 0 auto;
-}
-
-#user-container h3{
-    text-align: center;
-    margin-top: 40px;
-    font-size: 22px;
-    color: #a2b105;
 }
 
 .drink-content{
@@ -655,4 +692,53 @@
 .your-drink-button-in-list:hover{
     color: #a2b105;
     background: white;
+}
+
+.pagination{
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+}
+
+#pagination-content{
+    text-align: center;
+}
+
+
+
+#paginator-previous-link,
+.current,
+#paginator-next-link{
+    color: #a2b105;
+    padding: 5px;
+    border: 1px solid #a2b105;
+    margin: 0px;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.current{
+    margin-left: -6px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 2px #ccc, 0px -1px 0px #ccc;
+}
+
+#paginator-previous-link{
+    border-radius:  10px 0px 0px 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    box-shadow: -1px 1px 2px #ccc, 0px 0px 1px #ccc
+}
+
+#paginator-next-link{
+    border-radius:  0px 10px 10px 0px;
+    padding-right: 7px;
+    padding-left: 7px;
+    box-shadow: -1px 1px 2px #ccc, 0px 0px 1px #ccc
+}
+
+#paginator-previous-link:hover,
+#paginator-next-link:hover{
+    color: whitesmoke;
+    background-color: #768002ad;
 }

@@ -7,6 +7,9 @@ import random
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
+# paginator
+from django.core.paginator import Paginator
+
 # For Making queries
 from django.db.models import Q
 from functools import reduce
@@ -46,8 +49,13 @@ def random_cocktail(request):
         }, status=400)
 
 def search_cocktail_by_ingredient(request):
-    if request.method == "POST":
-        ingredient_form = FormIngredientDrink(request.POST)
+    if request.method == 'POST' or request.session.get('initial_for_form', None) is not None:
+        if request.method == "POST":
+            data = request.POST
+        else:
+            data = request.session.get('initial_for_form')
+
+        ingredient_form = FormIngredientDrink(data=data)
         if ingredient_form.is_valid():
             ingredient = ingredient_form.cleaned_data['ingredient']
             ingredient_list = ingredient.capitalize().split()
@@ -68,45 +76,51 @@ def search_cocktail_by_ingredient(request):
                     drinks_list.append(drink)
             
             if len(drinks_list) > 1:
+                paginator = Paginator(drinks_list, 9)
+                page_number = request.GET.get('page')
+                page_obj = paginator.get_page(page_number)
+                request.session['initial_for_form'] = ingredient_form.cleaned_data
                 return render(request, "../templates/drinkTeam/cocktails_search.html",{
-                    "drinks": drinks_list,
-                })
+                                "drinks": page_obj,
+                            })
             else:
                 return JsonResponse({
                     "error": "Ingredient doesn't exist."
                 }, status=400)
 
 def search_cocktail_by_category(request):
-    if request.method == 'POST':
-        category_form = FormCategoryDrink(request.POST)
+    if request.method == 'POST' or request.session.get('initial_for_form', None) is not None:
+        if request.method == "POST":
+            data = request.POST
+        else:
+            data = request.session.get('initial_for_form')
+
+        category_form = FormCategoryDrink(data=data) # cambie request.POST
         if category_form.is_valid():
             category = category_form.cleaned_data['category']
-            print(category)
-            # get categories
+            # get drinks
             try:
-                categories = Category.objects.filter(pk=category)
+                drinks = Drink.objects.filter(category_id=category)
             except Category.DoesNotExist:
                 return JsonResponse({
                     "error:" "Category doesn't exist."
                 })
-            drinks_list = []
-            # Get drink for each category
-            for category in categories:
-                drinks = Drink.objects.filter(category=category.id)
-                for drink in drinks:
-                    drinks_list.append(drink)
-            if len(drinks_list) > 1:
-                return render(request, "../templates/drinkTeam/cocktails_search.html",{
-                    "drinks": drinks_list,
-                })
-            else:
-                return JsonResponse({
-                    "error": "category doesn't exist."
-                }, status=400)
+            paginator = Paginator(drinks, 9)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            request.session['initial_for_form'] = category_form.cleaned_data
+            return render(request, "../templates/drinkTeam/cocktails_search.html",{
+                            "drinks": page_obj,
+                        })
+
 
 def search_cocktail_by_name(request):
-    if request.method == "POST":
-        drink_form = FormNameDrink(request.POST)
+    if request.method == 'POST' or request.session.get('initial_for_form', None) is not None:
+        if request.method == "POST":
+            data = request.POST
+        else:
+            data = request.session.get('initial_for_form')
+        drink_form = FormNameDrink(data=data)
         if drink_form.is_valid():
             cocktail = drink_form.cleaned_data['name_drink']
             # Get the drinks from thecocktaildb api
@@ -175,10 +189,14 @@ def search_cocktail_by_name(request):
                     drink_name = drink['strDrink']
                     get_drink_for_list = Drink.objects.get(drink_name=drink_name)
                     drink_list.append(get_drink_for_list)
-            print(drink_list)
+
+            paginator = Paginator(drink_list, 9)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            request.session['initial_for_form'] = drink_form.cleaned_data
             return render(request, "../templates/drinkTeam/cocktails_search.html",{
-                "drinks": drink_list
-            })
+                            "drinks": page_obj,
+                        })
     return JsonResponse({
                     "error": "Write valid data"
                 }, status=400)
@@ -217,6 +235,11 @@ def drink_watchlist(request, drink_id):
 @login_required(login_url='login')
 def show_user_watchlist(request, username):
     drinks = Drink.objects.filter(favorites=request.user.id)
+    # paginate drinks
+    paginator = Paginator(drinks[::-1], 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     return render(request, "../templates/drinkTeam/cocktails_search.html",{
-                    "drinks": drinks,
+                    "drinks": page_obj,
                 })
+
