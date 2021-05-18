@@ -34,7 +34,7 @@ The user may create an account, log in and save or delete his favorites cocktail
         *`views.py`: all Users functions views fot register, login and logout.
 
 ### Justification
-* This app is diferent from the another projects.
+* This app is diferent from the other projects.
 * In this app thecocktailsdb Api is used and that provide us more than 500 drinks and cocktails for the app and the users and will be stored in the drinkTeamClub database.
 * Uses fecth and javascript for events without reloading the page.
 * Completely Mobile responsive.

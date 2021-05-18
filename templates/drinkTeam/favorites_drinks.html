@@ -2,10 +2,10 @@
 
 {% load static %}
 
-{% block title %} | Drinks{% endblock %}
+{% block title %} | Favorites Drinks{% endblock %}
 
 {% block body %}
-
+    
     <section id="drinks-page-content">
         
         <div id="drinks-container">
@@ -16,8 +16,7 @@
             {% endif %}
 
             {% for drink in drinks %}
-
-                <div id="drink-container">
+                <div id="drink-container" class="drink-container{{drink.id}}">
 
                     <div class="drink-content">
 
@@ -53,6 +52,7 @@
                 </div>
             {% endfor %}
         </div>
+
         {% if drinks %}
             <div class="pagination">
                 <div id="pagination-content">
@@ -70,10 +70,11 @@
                 </div>
             </div>
         {% endif %}
+        
     </section>
 
 {% endblock %}
 
 {% block script %}
-    <script src="{% static '/js/favorites_drinks.js' %}"></script>
+    <script src="{% static '/js/remove_favorite.js' %}"></script>
 {% endblock %}

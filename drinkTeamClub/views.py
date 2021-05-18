@@ -234,18 +234,18 @@ def show_user_favorites(request, username):
         drinks = Drink.objects.filter(favorites=request.user.id)
     except Drink.DoesNotExist:
         return render(request, "../templates/drinkTeam/cocktails_search.html",{
-                    "message": "You don't have favorite drinks."
+                    "message": "You don't have favorites drinks."
                 })
     # Error message if there aren't drinks
     if drinks.exists() == False:
         return render(request, "../templates/drinkTeam/cocktails_search.html",{
-                    "message": "You don't have favorite drinks..."
+                    "message": "You don't have favorites drinks..."
                 })
     # paginate drinks and show
     paginator = Paginator(drinks[::-1], 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, "../templates/drinkTeam/cocktails_search.html",{
+    return render(request, "../templates/drinkTeam/favorites_drinks.html",{
                     "drinks": page_obj,
                 })
 
