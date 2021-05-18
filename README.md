@@ -17,12 +17,14 @@ The user may create an account, log in and save or delete his favorites cocktail
         *`css`: css styles file.
         *`img`: static images and icons.
         *`js`: javascript files.
-            *`favorite_drinks`: add drinks to favorites drinks list.
-            *`random_drink`: get random drinks.
+            *`favorite_drinks.js`: add drinks to favorites drinks list.
+            *`random_drink.js`: get random drinks.
+            *`remove_drinks.js`: delete drinks from favorites drinks list.
     *`templates`: all the html files.
         *`drinkTeam`: html drinks folder.
             *`cocktails_search.html`: show all drinks/cocktails searches.
             *`index.html`: index page.
+            *`favorites_drinks.html`: show user favorite drinks list.
         *`users`: html users files.
             *`login.html`: log in html page.
             *`register`: Sign up html page.

@@ -457,6 +457,20 @@
     border: 1px solid rgba(0, 0, 0, 0.219);
     border-radius: 5px;
     box-shadow: -2px 1px 1px #ccc, 1px 0px 2px #ccc;
+    animation: showRandomDrinkImg 1000ms linear;
+}
+
+
+@keyframes showRandomDrinkImg{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 .drink-img-random-container img{
