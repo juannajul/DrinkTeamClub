@@ -9,14 +9,22 @@
     <section id="drinks-page-content">
         
         <div id="drinks-container">
+            {% if message %}
+                <div id="no-favorite-drinks-message">
+                        <h5>{{message}}</h5>
+                </div>
+            {% endif %}
+
             {% for drink in drinks %}
 
                 <div id="drink-container">
+
+
                     <div class="drink-content">
 
                         <div class="your-drink-button-container">
                             {% if request.user.is_authenticated %}
-                            <a id="watchlist-link" class="{% if request.user in drink.favorites.all %}your-drink-button-in-list{% else %}your-drink-button{% endif %} watchlist-link{{drink.id}}" 
+                            <a id="favorite-drink-link" class="{% if request.user in drink.favorites.all %}your-drink-button-in-list{% else %}your-drink-button{% endif %} favorite-drink-link{{drink.id}}" 
                             data-postid="{{ drink.id }}">+</a>
                             {% endif %}
                         </div>
@@ -46,25 +54,27 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="pagination">
-            <div id="pagination-content">
-                <span class="step-links">
-                    {% if drinks.has_previous %}
-                        <a id="paginator-previous-link" href="?page={{ drinks.previous_page_number }}">{{drinks.previous_page_number}}</a>
-                    {% endif %}
-                    <span class="current">
-                        Page {{ drinks.number }}
+        {% if drinks %}
+            <div class="pagination">
+                <div id="pagination-content">
+                    <span class="step-links">
+                        {% if drinks.has_previous %}
+                            <a id="paginator-previous-link" href="?page={{ drinks.previous_page_number }}">{{drinks.previous_page_number}}</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ drinks.number }} of {{drinks.paginator.num_pages}}
+                        </span>
+                        {% if drinks.has_next %}
+                            <a id="paginator-next-link" href="?page={{ drinks.next_page_number }}">{{drinks.next_page_number}}</a>
+                        {% endif %}
                     </span>
-                    {% if drinks.has_next %}
-                        <a id="paginator-next-link" href="?page={{ drinks.next_page_number }}">{{drinks.next_page_number}}</a>
-                    {% endif %}
-                </span>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </section>
 
 {% endblock %}
 
 {% block script %}
-    <script src="{% static '/watchlist_drinks.js' %}"></script>
+    <script src="{% static '/js/favorites_drinks.js' %}"></script>
 {% endblock %}

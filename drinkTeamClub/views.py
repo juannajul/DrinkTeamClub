@@ -31,6 +31,9 @@ def index(request):
         "categoryForm": FormCategoryDrink(),
     })
 
+def error_page_view(request, exception):
+    return render(request, "../templates/error_page.html")
+
 def random_cocktail(request):
     # Get random drink id
     drinks = Drink.objects.all()
@@ -61,21 +64,20 @@ def search_cocktail_by_ingredient(request):
             ingredient_list = ingredient.capitalize().split()
             # Search ingredients in db
             q_object = reduce(or_, (Q(ingredient_name__icontains=ingredient) for ingredient in ingredient_list))
-            print(q_object)
             try:
                 ingredients = Ingredient.objects.filter(q_object)
             except Ingredient.DoesNotExist:
-                return JsonResponse({
-                    "error": "Ingredient doesn't exist."
-                }, status=400)
+                return render(request, '../templates/error_page.html', {
+                    "message": "Ingredient doesn't exists."
+                })
             drinks_list = []
             # get drinks for each ingredient
             for ingredient in ingredients:
                 drinks = Drink.objects.filter(ingredients=ingredient.id)
                 for drink in drinks:
                     drinks_list.append(drink)
-            
             if len(drinks_list) > 1:
+                # paginate and show drinks by ingredients
                 paginator = Paginator(drinks_list, 9)
                 page_number = request.GET.get('page')
                 page_obj = paginator.get_page(page_number)
@@ -84,9 +86,7 @@ def search_cocktail_by_ingredient(request):
                                 "drinks": page_obj,
                             })
             else:
-                return JsonResponse({
-                    "error": "Ingredient doesn't exist."
-                }, status=400)
+                return render(request, '../templates/error_page.html')
 
 def search_cocktail_by_category(request):
     if request.method == 'POST' or request.session.get('initial_for_form', None) is not None:
@@ -94,17 +94,17 @@ def search_cocktail_by_category(request):
             data = request.POST
         else:
             data = request.session.get('initial_for_form')
-
-        category_form = FormCategoryDrink(data=data) # cambie request.POST
+        category_form = FormCategoryDrink(data=data)
         if category_form.is_valid():
             category = category_form.cleaned_data['category']
             # get drinks
             try:
                 drinks = Drink.objects.filter(category_id=category)
             except Category.DoesNotExist:
-                return JsonResponse({
-                    "error:" "Category doesn't exist."
+                return render(request, '../templates/error_page.html', {
+                    "message": "Category doesn't exists."
                 })
+            # paginate and show drinks by category
             paginator = Paginator(drinks, 9)
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
@@ -133,9 +133,9 @@ def search_cocktail_by_name(request):
                 }, status=400)
             drinks = r['drinks']
             if drinks == None:
-                return JsonResponse({
-                    "error": "The drink doesn't exists."
-                }, status=400)
+                return render(request, '../templates/error_page.html', {
+                    "message": "Drink doesn't exists."
+                })
             
             drink_list = []
             # Create drink
@@ -148,23 +148,24 @@ def search_cocktail_by_name(request):
                     drink['strIngredient10'],drink['strIngredient11'],drink['strIngredient12'],drink['strIngredient13'],
                     drink['strIngredient14'],drink['strIngredient15']]
                     for ingredient in ingredients:
-                        if ingredient != None and Ingredient.objects.filter(ingredient_name=ingredient).exists() == False:
-                            add_ingredient = Ingredient(ingredient_name=ingredient)
-                            add_ingredient.save()
+                        if ingredient != None:
+                            new_ingredient = ingredient.lower()
+                            if new_ingredient.capitalize() != None and Ingredient.objects.filter(ingredient_name=new_ingredient.capitalize()).exists() == False:
+                                add_ingredient = Ingredient(ingredient_name=new_ingredient.capitalize())
+                                add_ingredient.save()
                     
                     # Create category
                     drink_category = drink['strCategory']
-                    if drink_category != None and Category.objects.filter(category_name=drink_category).exists() == False:
-                        add_category = Category(category_name=drink_category)
+                    new_drink_category = drink_category.lower()
+                    if new_drink_category.capitalize() != None and Category.objects.filter(category_name=new_drink_category.capitalize()).exists() == False:
+                        add_category = Category(category_name=new_drink_category.capitalize())
                         add_category.save()
                     
                     # Create drink
                     drink_name = drink['strDrink']
                     drink_instruction = drink['strInstructions']
                     drink_image = drink['strDrinkThumb']
-                    print(drink_name)
-                    print(drink_category)
-                    category_instance = Category.objects.get(category_name=drink_category)
+                    category_instance = Category.objects.get(category_name=new_drink_category.capitalize())
                     add_drink = Drink(
                         drink_name=drink_name,
                         drink_instructions=drink_instruction,
@@ -175,11 +176,11 @@ def search_cocktail_by_name(request):
                     get_drink = Drink.objects.get(drink_name=drink_name)
                     for ingredient in ingredients:
                         if ingredient != None:
-                            print("/")
-                            print(ingredient)
-                            ingredient_instance = Ingredient.objects.get(ingredient_name=ingredient)
-                            get_drink.ingredients.add(ingredient_instance)
-                            get_drink.save()
+                            new_ingredient = ingredient.lower()
+                            if new_ingredient.capitalize() != None:
+                                ingredient_instance = Ingredient.objects.get(ingredient_name=new_ingredient.capitalize())
+                                get_drink.ingredients.add(ingredient_instance)
+                                get_drink.save()
 
                     # Drink for view
                     get_drink_for_list = Drink.objects.get(drink_name=drink_name)
@@ -189,7 +190,7 @@ def search_cocktail_by_name(request):
                     drink_name = drink['strDrink']
                     get_drink_for_list = Drink.objects.get(drink_name=drink_name)
                     drink_list.append(get_drink_for_list)
-
+            # Paginate and show dirnks by name
             paginator = Paginator(drink_list, 9)
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
@@ -197,32 +198,26 @@ def search_cocktail_by_name(request):
             return render(request, "../templates/drinkTeam/cocktails_search.html",{
                             "drinks": page_obj,
                         })
-    return JsonResponse({
-                    "error": "Write valid data"
-                }, status=400)
+    return render(request, '../templates/error_page.html')
 
 @login_required(login_url='login')
 @csrf_exempt
-def drink_watchlist(request, drink_id):
+def drink_favorite(request, drink_id):
     try:
         drink = Drink.objects.get(pk=drink_id)
     except Drink.DoesNotExist:
-        return JsonResponse({
-            "error": "Drink not found."
-        }, status=404)
-    # drink watchlist
+        return render(request, '../templates/error_page.html', {
+                    "message": "Drink not found."
+                })
+    # drink favorites
     if request.method == "PUT":
         data_drink = json.loads(request.body)
         if data_drink.get("favorites") is not None:
-            print(data_drink.get("favorites"))
             if data_drink.get("favorites"):
-                print("entro 0")
                 if request.user in drink.favorites.all():
-                    print("entro1")
                     drink.favorites.remove(request.user)
                 else:
                     drink.favorites.add(request.user)
-                    print("entro2")
         drink.save()
         return HttpResponse(status=204)
     elif request.method == "GET":
@@ -233,9 +228,20 @@ def drink_watchlist(request, drink_id):
         }, status=404)
 
 @login_required(login_url='login')
-def show_user_watchlist(request, username):
-    drinks = Drink.objects.filter(favorites=request.user.id)
-    # paginate drinks
+def show_user_favorites(request, username):
+    # Get user favorite drinks from db
+    try:
+        drinks = Drink.objects.filter(favorites=request.user.id)
+    except Drink.DoesNotExist:
+        return render(request, "../templates/drinkTeam/cocktails_search.html",{
+                    "message": "You don't have favorite drinks."
+                })
+    # Error message if there aren't drinks
+    if drinks.exists() == False:
+        return render(request, "../templates/drinkTeam/cocktails_search.html",{
+                    "message": "You don't have favorite drinks..."
+                })
+    # paginate drinks and show
     paginator = Paginator(drinks[::-1], 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

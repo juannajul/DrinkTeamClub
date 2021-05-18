@@ -21,3 +21,5 @@ urlpatterns = [
     path('', include('drinkTeamClub.urls')),
     path('users/', include('users.urls')),
 ]
+
+handler404 = 'drinkTeamClub.views.error_page_view'

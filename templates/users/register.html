@@ -22,18 +22,18 @@
                 
                 <input class="" autofocus autocomplete="off" required=true type="text" name="username" placeholder="Username">
                 
-                <input class="" autocomplete="off" type="email" name="email" placeholder="Email Address">
+                <input class="" autocomplete="off" type="email" required=true name="email" placeholder="Email Address">
                 
-                <input class="" type="password" name="password" placeholder="Password">
+                <input class="" type="password" name="password" required=true placeholder="Password">
                 
-                <input class="" type="password" name="confirmation" placeholder="Confirm Password">
+                <input class="" type="password" name="confirmation" required=true placeholder="Confirm Password">
                 
                 <button type="submit">Register</button>
             
             </form>
 
             <div class="get-login">
-                Already have an account? <a href="">Log In here.</a>
+                Already have an account? <a href="{% url 'login' %}">Log In here.</a>
             </div>
             
 

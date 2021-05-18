@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    //document.querySelector('#edit-post-link').addEventListener('click', () => load_edit_page('edit_post'));
     document.querySelector('#random-button').addEventListener('click', () => random_cocktail())
-    console.log('algo')
 });
 
 function random_cocktail(){
@@ -19,6 +17,7 @@ function random_cocktail(){
         document.querySelector('#random-modal-content').style.display = 'block';
         document.querySelector('#close-random-button').addEventListener('click', () =>{
             document.querySelector('#random-modal-content').style.display = 'none';
+            localStorage.clear()
         })
     });
 }

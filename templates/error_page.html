@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %} | Page not Found{% endblock %}
+
+{% block body %}
+    <section id="error-page-container">
+        <div id="error-page-content">
+            <div id="error-page-img-container">
+                <img src="/static/img/martini-18-486106.png" alt="Error">
+            </div>
+            <div id="error-page-text-container">
+                <h2 id="error-page-title">Sorry!
+                    {% if message %}
+                        {{message}}
+                    {% endif %}
+                </h2>
+                <p id="error-page-text">We couldn't find what you were looking for.</p>
+                <p id="error-page-link">Go <a href="{% url 'index' %}">Home. </a>Try again.</p>
+            </div>
+            
+        </div>
+    </section>
+    
+
+{% endblock %}
