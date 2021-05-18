@@ -52,4 +52,4 @@ The user may create an account, log in and save or delete his favorites cocktail
 ```python manage.py runserver```
 
 ### Additional information the staff should know about the project.
-When your start the web app with a new database, the page needs to obtain some drinks and cocktails from the "thecocktailsdb" API. Then the app would have drinks and cocktails in the database and everyone could make all the searches. So you can obtain drinks and cocktails from de API searching cocktails by name.
+When your start the web app with a new database, the page needs to obtain some drinks and cocktails from the "thecocktailsdb" API. Then the app would have drinks and cocktails in the database and everyone could make all the searches. So you can obtain drinks and cocktails from the API searching cocktails by name.
