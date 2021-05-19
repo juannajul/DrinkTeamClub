@@ -1,2 +1,3 @@
 # ignore enviroment
 .venv/
+.db.sqlite3/
