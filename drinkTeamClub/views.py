@@ -20,7 +20,7 @@ from .models import Ingredient, Category, Drink
 from users.models import User
 
 # Import forms
-from .forms import FormIngredientDrink, FormNameDrink, FormCategoryDrink
+#from .forms import FormIngredientDrink, FormNameDrink, FormCategoryDrink
 
 # Create your views here.
 
