@@ -1,3 +1,4 @@
+
 from django import forms
 from django.core import validators
 from .models import Ingredient, Category, Drink
@@ -39,3 +40,4 @@ class FormNameDrink(forms.Form):
         # drink lowercase
         name_drink = self.cleaned_data['name_drink'].lower()
         return name_drink
+

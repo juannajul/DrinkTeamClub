@@ -1,0 +1,832 @@
+*{
+    text-decoration: none;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#website-area{
+    width: 100%;
+}
+
+@font-face{
+    font-family: "OpenSansBold";
+    src: url("fonts/OpenSans-ExtraBold.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* CSS styles for nav */
+
+#header{
+    width: 100%;
+    height: 55px;
+    border-bottom: 1px solid rgba(68, 67, 67, 0.5);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: -3px 1px 7px rgb(82, 81, 81);
+}
+
+.menu-fixed{
+    position: sticky;
+    z-index: 1000;
+    top: 0px;
+    background: black;
+}
+
+#logo{
+    display:flex;
+    background: linear-gradient(to left, #bfd200  0%, #ffff3f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 10px 0 10px;
+    border: 0px solid yellow;
+}
+
+
+#logo h2{
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+#nav{
+    display: flex;
+    flex-grow: 1;
+    height: 22px;
+    border: 0px solid red;
+}
+
+#nav > ul{
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-grow: 1;
+    height: 100%;
+    border: 0px solid blue;  
+}
+
+#nav ul li{
+    margin: 0;
+    margin-right: 0px;
+    margin-right: 7%;
+    height: 100%;
+    border: 0px solid orange;
+}
+
+#nav > ul a{
+    color: white;
+    transition: all 400ms;
+}
+
+#nav ul li a:hover{
+    color: #ffff3f;
+    transform: scale(1.5,1.5);
+}
+
+@media (max-width: 550px){
+    #header{
+        height: 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    #logo{
+        width: 100%;
+        margin: 0 0 0 0;
+        flex-basis: 50%;
+        align-items: center;
+    }
+
+    #nav{
+        flex-basis: 45%;
+        width: 100%;
+    }
+
+    #nav > ul{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    #nav ul li{
+        margin: 0;
+        line-height: 35px;
+    }
+
+
+}
+
+/* Error page styles */
+#error-page-container{
+    width: 100%;
+    height: 90vh;
+}
+
+#error-page-content{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#error-page-img-container{
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#error-page-text-container{
+    text-align: center;
+}
+
+#error-page-text-container #error-page-title{
+    font-size: 35px;
+    color: #a2b105;
+}
+
+#error-page-text-container #error-page-text,
+#error-page-text-container #error-page-link
+{
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: normal
+}
+#error-page-text-container #error-page-link a{
+    color: #a2b105;
+    transition: all 300ms;
+}
+
+#error-page-text-container #error-page-link a:hover{
+    color: #758002;
+}
+
+/* Footer styles */
+#footer-container{
+    width: 100%;
+    height: 155WSpx;
+    margin-top: 45px;
+    background: black;
+
+}
+
+#footer-content{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+    color: whitesmoke;
+}
+
+#footer-content h3,
+#footer-content p{
+    margin-bottom: 5px;
+}
+
+#footer-content h3{
+    color: #a2b105;
+}
+
+#footer-content p{
+    font-size: 15px;
+    color: rgb(216, 211, 211);
+}
+
+/* Register and login page styles*/
+#container-form{
+    width: 70%;
+    height: 80vh;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+
+
+#container-register-form,
+#container-login-form{
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    box-shadow: -3px 0px 3px #ccc, 1px 0px 2px #ccc;
+}
+
+#container-login-form{
+    height: 330px;
+    margin-top: 80px;
+}
+
+.coctail-container-register-logo,
+.coctail-container-login-logo{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.coctail-logo-img{
+    width: 50px;
+    height: 50px;
+}
+
+#register-container,
+#login-container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#register-title,
+#login-title{
+    text-align: center;
+    color: #bfd200;
+    margin-bottom: 10px;
+}
+
+#register-container input,
+#login-container input{
+    width: 80%;
+    height: 30px;
+    margin: 0 auto;
+    padding-left: 5px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    border: 0px;
+    border-bottom: 2px solid #a2b105;
+    font-weight: bold;
+}
+
+#register-container input:focus, 
+#register-container button:focus,
+#login-container input:focus,
+#login-container button:focus{
+    outline: none;
+}
+
+#register-container button,
+#login-container button{
+    width: 80%;
+    height: 30px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    background: #bfd200;
+    border: 0px;
+    font-size: 15px;
+    border-radius: 30px;
+    transition: all 400ms;
+}
+
+#register-container button:hover,
+#login-container button:hover{
+    background: #a2b105;
+    cursor: pointer;
+}
+
+#login-message,
+#register-message{
+    margin: 10px;
+    text-align: center;
+    background: #fdd;
+    padding: 7px;
+    border: 0.1px solid red;
+    border-radius: 2px;
+    font-size: 15px;
+    color: rgb(228, 10, 10);
+}
+
+.get-account,
+.get-login{
+    text-align: center;
+    margin: 5%;
+    font-size: 14px;
+}
+
+@media (max-width: 550px){
+    #container-register-form,
+    #container-login-form{
+        margin: 0 auto;
+        width: 350px;
+    }
+}
+
+@media (max-width: 480px){
+    #container-register-form,
+    #container-login-form{
+        width: 100%;
+    }
+    #register-container,
+    #login-container{
+        margin-left: 5%;
+    }
+    #register-title,
+    #login-title{
+        margin-left: 12%;
+    }
+}
+
+/* index banner css styles */
+
+#index-content{
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: auto;
+    border: 0px solid black;
+    overflow: hidden;
+}
+
+#index-banner-container{
+    width: 100%;
+    height: 900px;
+    background-image:linear-gradient(to top, rgba(0, 0, 0, 0.603) 0%,rgba(0, 0, 0, 0.747) 100%),url("../img/tragos2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 780px;
+    background-attachment: fixed;
+}
+
+.banner-content{
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    border: 0px solid green;
+}
+
+.banner-container-content{
+    border: 0px solid red;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding-top: -50px;
+}
+
+.banner-title,
+.banner-title-subtitle{
+    color: white;
+    width: 0 auto;
+    border: 0px solid blue;
+}
+.banner-title{
+    margin-top: 150px;
+}
+
+.banner-container-content .banner-title{
+    font-size: 8vw;
+    letter-spacing: 1px;
+}
+
+
+
+.banner-container-content .banner-title-subtitle{
+    margin-top: 50px;
+    font-size: 3.5vw;
+    letter-spacing: 1px;
+}
+
+
+.banner-container-content .banner-title-subtitle em{
+    color: #a2b105;
+}
+
+.banner-random-button{
+    width: 250px;
+    margin-top: 70px;
+}
+
+#random-button{
+    width: 90%;
+    height: 50px;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: #a2b105;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+#random-button:hover{
+    background: #758002;
+    color: rgb(216, 211, 211);
+}
+
+#random-modal-content{
+    display: none;
+    position: fixed;
+    margin-top: 0 auto;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    overflow-y: initial;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    animation: edit-post-animation 200ms linear;
+    transition: all 300ms;
+    animation: random-cocktail 400ms linear;
+}
+
+@keyframes random-cocktail{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.drink-img-random-container{
+    width: 150px;
+    height: 180px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    box-shadow: -2px 1px 1px #ccc, 1px 0px 2px #ccc;
+    animation: showRandomDrinkImg 1000ms linear;
+}
+
+
+@keyframes showRandomDrinkImg{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.drink-img-random-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#random-modal-container{
+    width: 350px;
+    min-height: 390px;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 30px;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.219);
+    border-radius: 10px;
+}
+
+.close-random-drink{
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
+}
+
+#close-random-button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 32px;
+    background: #a2b105;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+#close-random-button:hover{
+    background: #758002;
+    color: rgb(216, 211, 211);
+}
+
+#search-cocktail-content{
+    width: 100%;
+    height: auto;
+    border: 0px solid red;
+}
+
+#search-cocktail-container{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 250px;
+    margin-bottom: 210px;
+    border: 0px solid green;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-cocktail-form{
+    margin-top: 20px;
+    width: 300px;
+    height: 220px;
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    box-shadow: -3px 0px 3px #ccc, 1px 0px 2px #ccc;
+}
+
+#search-cocktail-name,
+#search-cocktail-category,
+#search-cocktail-ingredient{
+    margin: 10px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 15px;
+    color: #a2b105;
+}
+
+.search-cocktail-form input,
+.search-cocktail-form button,
+.search-cocktail-form select{
+    width: 80%;
+    height: 30px;
+    margin: 30px 20px 0 20px;
+    font-size: 15px;
+}
+
+.search-cocktail-form input:focus,
+.search-cocktail-form button:focus,
+.search-cocktail-form select:focus{
+    outline: none;
+}
+
+#search-cocktail-name .search-cocktail-buttons,
+#search-cocktail-category .search-cocktail-buttons,
+#search-cocktail-ingredient .search-cocktail-buttons{
+    background: #a3b10573;
+    border: .5px solid #a2b105;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+#search-cocktail-name .search-cocktail-buttons:hover,
+#search-cocktail-category .search-cocktail-buttons:hover,
+#search-cocktail-ingredient .search-cocktail-buttons:hover{
+    background: #a0ac24e1;
+}
+
+.search-cocktail-form input{
+    border: 0px;
+    padding-left: 5px;
+    border-bottom: 2px solid #a2b105;
+}
+
+.search-cocktail-form select{
+    border: 1px solid #a2b105;
+    color: #6e6e6e;
+    transition: all 300ms;
+}
+
+@media (max-width: 1050px){
+    #index-banner-container {
+        height: 720px;
+    }
+
+    #search-cocktail-container{
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 550px){
+
+    #index-banner-container {
+        height: 260px;
+        background-size: 100% 349px;
+        object-fit: cover;
+    }
+
+    .banner-title:first-child {
+        margin-top: 30px;
+    }
+
+    .banner-container-content h2 {
+        margin-top: 35px;
+    }
+
+    .banner-random-button {
+        width: 180px;
+        margin-top: 35px;
+    }
+
+    #random-button {
+        height: 35px;
+    }
+
+}
+
+/* Drinks page styles*/
+
+#drinks-page-content{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#drinks-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 95%;
+    min-height: 450px;
+    margin-top: 30px;
+}
+
+#drink-container{
+    width: 310px;
+    min-height: 390px;
+    margin: 40px 30px 20px 30px;
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    box-shadow: -1px 2px 2px #ccc, 1px 0px 2px #ccc;
+    transition: all 400ms;
+}
+
+#drink-container:hover{
+    transform: scale(1.05, 1.05);
+}
+
+.drink-content{
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.drink-img-container{
+    width: 150px;
+    height: 180px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    box-shadow: -2px 1px 1px #ccc, 1px 0px 2px #ccc;
+    animation: showDrinkImg 1000ms linear;
+}
+
+@keyframes showDrinkImg{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.drink-img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.drink-name-title{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.drink-name-title h3{
+    color: #a2b105;
+}
+
+.drink-ingredients,
+.drink-category,
+.drink-instructions{
+    margin: 10px;
+}
+
+.drink-ingredients p,
+.drink-category p,
+.drink-instructions p{
+    font-size: 15px;
+}
+
+.drink-ingredients p em,
+.drink-category p em,
+.drink-instructions p em{
+    font-weight: bold;
+    color: #758002;
+}
+
+.your-drink-button-container{
+    width: 50px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.your-drink-button {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: #a2b105;
+    border: 2px solid #a2b105;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.your-drink-button:hover{
+    color: whitesmoke;
+    background: #a2b105;
+}
+
+.your-drink-button-in-list{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: whitesmoke;
+    background: #a2b105;
+    border: 2px solid #a2b105;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.your-drink-button-in-list:hover{
+    color: #a2b105;
+    background: white;
+}
+
+.pagination{
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+}
+
+#pagination-content{
+    text-align: center;
+}
+
+#no-favorite-drinks-message{
+    width: 80%;
+    min-height: 550px;
+    margin: 50px;
+    text-align: center;
+    justify-content: center;
+}
+
+#no-favorite-drinks-message h5{
+    margin-top: 150px;
+    font-size: 25px;
+    color: #a2b105;
+}
+
+
+#paginator-previous-link,
+.current,
+#paginator-next-link{
+    color: #a2b105;
+    padding: 5px;
+    border: 1px solid #a2b105;
+    margin: 0px;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.current{
+    margin-left: -6px;
+    padding-left: 10px;
+    box-shadow: 0px 1px 2px #ccc, 0px -1px 0px #ccc;
+}
+
+#paginator-previous-link{
+    border-radius:  10px 0px 0px 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    box-shadow: -1px 1px 2px #ccc, 0px 0px 1px #ccc
+}
+
+#paginator-next-link{
+    border-radius:  0px 10px 10px 0px;
+    padding-right: 7px;
+    padding-left: 7px;
+    box-shadow: -1px 1px 2px #ccc, 0px 0px 1px #ccc
+}
+
+#paginator-previous-link:hover,
+#paginator-next-link:hover{
+    color: whitesmoke;
+    background-color: #768002ad;
+}
